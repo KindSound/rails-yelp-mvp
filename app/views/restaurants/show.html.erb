@@ -1,42 +1,39 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @restaurant.name %>
 </p>
-
 <p>
   <strong>Address:</strong>
   <%= @restaurant.address %>
 </p>
-
 <p>
   <strong>Number:</strong>
   <%= @restaurant.phone_number %>
 </p>
-
 <p>
   <strong>Category:</strong>
   <%= @restaurant.category %>
 </p>
-
-
-<% @restaurant.reviews.each do |rev| %>
+<p>
+   <strong>Reviews:</strong>
+<% @restaurant.reviews.each do |rev| %> <br>
 <%= rev.content  %>
+ <strong>Rating:</strong>
 <%= rev.rating  %>
 <% end %>
+</p>
 
+<h1>Rate This Restaurant</h1>
 <%= form_for @review, as: :review, url: restaurant_reviews_path(@restaurant) do |f| %>
-
+<div class="field">
   <%= f.label :content %>:
   <%= f.text_field :content %><br />
-
+</div>
+<div class="field">
   <%= f.label :rating %>:
   <%= f.number_field :rating %><br />
-
-  <%= f.submit %>
+</div>
+  <%= f.submit 'Save Rating', class: 'btn btn-primary'%>
 <% end %>
-
-
 <%= link_to 'Back', restaurants_path %>
-
